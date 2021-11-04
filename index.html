@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Simple Implementation</title>
+		<style>
+#videoTTY {
+	position: absolute;
+	top: 25px;
+	left: 65%;
+	right: 25px;
+	bottom: 25px;
+	background: rgba(60, 60, 60, .5);
+	color: white;
+	padding: 25px;
+}
+		</style>
+	</head>
+
+	<body>
+		<div id="videoTTY"> Hello</div>
+
+		<script>
+			/*
+			var fullTTY = "";
+			function displayTTY(tty) {
+				fullTTY = "<p>" + tty + '</p>' + fullTTY; while( fullTTY.length > 2000) {
+					fullTTY = fullTTY.substring(0, fullTTY.lastIndexOf('</p>') );
+				}
+				document.getElementById("videoTTY").innerHTML = fullTTY;
+			}
+			WM_videoPlayer.TTY = displayTTY;
+			*/
+			WM_videoPlayer.TTYLevel = 3;
+			WM_videoPlayer.TTY = function (tty) { console.log(tty); };
+
+			/*
+			window.external.user(JSON.stringify({
+				"command": "load",
+				"contentUri": "https://deltatre-preprod-mm-trafficmanager-01.vos360.video/variant/v1/dai-event-d/live-event-d/DASH_DASH/Live/channel(sinc-fsn-arizona-2027)/manifest.mpd?debug=true&correlator=4878705598&sessid=856a5e92-7aa7-4d82-b89b-5470db570d23&scor=8886260691&cust_params=channel%3dFSA1%26zip%3d85030%26mvpduserid%3dauth0%257c615fa823861e1300699fb121%26video_type%3devent%26mvpd%3dMediacom%26sinclairid%3dauth0%257c615fa823861e1300699fb121%26applicationrelease%3d5.4.0%26platform%3dtv_ps4%26vid%3d3ef4e3d2-689d-462d-bcf9-3f2383437afc%26regions%3darizona&iu=%2f4756%2fballysports%2fvideo%2fssai%2fpreprod&cmsid=2549883&subid=721BB60F3E0B55B8011BC696B3690AFC&vcfilter=3ef4e3d2-689d-462d-bcf9-3f2383437afc",
+				"licenseUri": "https://lic.staging.drmtoday.com/license-proxy-headerauth/drmtoday/RightsManager.asmx",
+				"customData": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI1YzQxNjgxMi0yMzZhLTQ5MjQtODYxZC02MWFhZDhiYjBlYTciLCJpYXQiOjE2MzQ4Nzg3MDYsIm9wdERhdGEiOiJ7XCJ1c2VySWRcIjpcImF1dGgwfDYxNWZhODIzODYxZTEzMDA2OTlmYjEyMVwiLFwibWVyY2hhbnRcIjpcImRlbHRhdHJlX3NpbmNsYWlyXCIsXCJzZXNzaW9uSWRcIjpcImY3ZTFmNjQ5LWFlNWUtNDlhOC04NmUxLWQwNDNhNDA2YTM0M1wifSIsImNydCI6Ilt7XCJhc3NldElkXCI6XCJQUkVQUk9ELUxJVkVLRVlcIixcInJlZlwiOlwiNzI2NDgxMjYtOWZlYi00OGFmLTg2MmEtOWY4OTU0MzJkZTZiXCJ9XSJ9.QbpUPZqw1PvTq2VOVpT_MEQsRAmF3xIz4oMKf8cSuEt022xxktUzXWzXgwRo3GLW9uRJFSo_zpBW3dm-sE-Wig",
+				"sourceType": 4
+			}));
+			*/
+
+			/*
+			window.external.user(JSON.stringify({
+				"command": "load",
+				"contentUri": "https://media.axprod.net/TestVectors/v7-MultiDRM-MultiKey-MultiPeriod/Manifest.mpd",
+				"licenseUri": "https://drm-playready-licensing.axtest.net/AcquireLicense",
+				"customData": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2ZXJzaW9uIjoxLCJjb21fa2V5X2lkIjoiYjMzNjRlYjUtNTFmNi00YWUzLThjOTgtMzNjZWQ1ZTMxYzc4IiwibWVzc2FnZSI6eyJ0eXBlIjoiZW50aXRsZW1lbnRfbWVzc2FnZSIsImtleXMiOlt7ImlkIjoiMDg3Mjc4NmUtZjllNy00NjVmLWEzYTItNGU1YjBlZjhmYTQ1IiwiZW5jcnlwdGVkX2tleSI6IlB3NitlRVlOY3ZqWWJmc2gzWDNmbWc9PSJ9LHsiaWQiOiJjMTRmMDcwOS1mMmI5LTQ0MjctOTE2Yi02MWI1MjU4NjUwNmEiLCJlbmNyeXB0ZWRfa2V5IjoiLzErZk5paDM4bXFSdjR5Y1l6bnQvdz09In0seyJpZCI6IjhiMDI5ZTUxLWQ1NmEtNDRiZC05MTBmLWQ0YjVmZDkwZmJhMiIsImVuY3J5cHRlZF9rZXkiOiJrcTBKdVpFanBGTjhzYVRtdDU2ME9nPT0ifSx7ImlkIjoiMmQ2ZTkzODctNjBjYS00MTQ1LWFlYzItYzQwODM3YjRiMDI2IiwiZW5jcnlwdGVkX2tleSI6IlRjUlFlQld4RW9IT0tIcmFkNFNlVlE9PSJ9LHsiaWQiOiJkZTAyZjA3Zi1hMDk4LTRlZTAtYjU1Ni05MDdjMGQxN2ZiYmMiLCJlbmNyeXB0ZWRfa2V5IjoicG9lbmNTN0dnbWVHRmVvSjZQRUFUUT09In0seyJpZCI6IjkxNGU2OWY0LTBhYjMtNDUzNC05ZTlmLTk4NTM2MTVlMjZmNiIsImVuY3J5cHRlZF9rZXkiOiJlaUkvTXNsbHJRNHdDbFJUL0xObUNBPT0ifSx7ImlkIjoiZGE0NDQ1YzItZGI1ZS00OGVmLWIwOTYtM2VmMzQ3YjE2YzdmIiwiZW5jcnlwdGVkX2tleSI6IjJ3K3pkdnFycERWM3hSMGJKeTR1Z3c9PSJ9LHsiaWQiOiIyOWYwNWU4Zi1hMWFlLTQ2ZTQtODBlOS0yMmRjZDQ0Y2Q3YTEiLCJlbmNyeXB0ZWRfa2V5IjoiL3hsU0hweHdxdTNnby9nbHBtU2dhUT09In0seyJpZCI6IjY5ZmU3MDc3LWRhZGQtNGI1NS05NmNkLWMzZWRiMzk5MTg1MyIsImVuY3J5cHRlZF9rZXkiOiJ6dTZpdXpOMnBzaTBaU3hRaUFUa1JRPT0ifV19fQ.BXr93Et1krYMVs-CUnf7F3ywJWFRtxYdkR7Qn4w3-to",
+				"sourceType": 4
+			}));
+			*/
+			/*
+			window.external.user(JSON.stringify({
+				"command": "load",
+				"fileName": "http://playready.directtaps.net/smoothstreaming/SSWSS720H264PR/SuperSpeedway_720.ism/Manifest"
+			}));
+			*/
+
+			/*
+			window.external.user(JSON.stringify({
+				"command": "load",
+				"fileName": "https://vod-d-01-ballysports-preprod.akamaized.net/Content/DASH/VOD/1660/10466/6b23b0e1-7c63-4d60-bd0d-b010dc1fae31/f37622f4-8474-3b70-3474-1583f9376b86/manifest.mpd"
+			}));
+			*/
+			window.external.user(JSON.stringify({
+				"command": "load",
+				"fileName": "https://vod-d-01-ballysports-preprod.akamaized.net/Content/DASH/VOD/17268/16876/66f1ee2d-9c1f-46e0-a1db-39a8046f13fc/f37622f4-8474-3b70-3474-1583f9376b86/manifest.mpd"
+			}));
+		</script>
+
+	</body>
+</html>
